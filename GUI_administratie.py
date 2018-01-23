@@ -308,17 +308,17 @@ def Wijzigenklant():
     flex.grid(row=12, column=2)
     Verlopen = Radiobutton(Wijzigenklantwindow, text="Verlopen", variable=abonnement, value="verlopen")
     Verlopen.grid(row=12, column=3)
-    def wijzigenabbonnement():
+    def wijzigenabonnement():
         conn = sqlite3.connect('company.db')
         c = conn.cursor()
-        abbonnement = abonnement.get()
+        abonnement = abonnement.get()
         klantID = KlantIDentry.get()
-        c.execute("UPDATE klantgegevens SET straatnaam=?  WHERE klantID=?",(abbonnement, klantID))
+        c.execute("UPDATE klantgegevens SET abonnement=?  WHERE klantID=?",(abonnement, klantID))
         conn.commit()
         conn.close()
 
-    Updateabbonnement = Button(Wijzigenklantwindow, text="Update", command=lambda : wijzigenabbonnement() )
-    Updateabbonnement.grid(row=12, column=4)
+    Updateabonnement = Button(Wijzigenklantwindow, text="Update", command=lambda : wijzigenabonnement() )
+    Updateabonnement.grid(row=12, column=4)
 # ------------------------------WIJZIGENKLANT-----------------------------#
 
 
