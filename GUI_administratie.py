@@ -361,7 +361,7 @@ def opvragenklant():
             "SELECT * FROM klantgegevens"):
         list += str(row[0]) + '-' + str(row[1]) + '-' + str(row[2]) + '-' + str(row[3]) + '-' + str(row[4]) + '-' + str(
             row[5]) + '-' + str(row[6]) + '-' + str(row[7]) + '-' + str(row[8]) + '-' + str(row[9]) + '-' + str(
-            row[10]) + '-' + str(row[11]) + '-' + str(row[12]) + '-' + str(row[13]) + '\n'
+            row[10]) + '-' + str(row[11]) + '-' + str(row[12]) + '-' + str(row[13]) + '-' + str(row[14]) + '\n'
     klantinformatie.configure(text=list)
     conn.close()
 
@@ -373,7 +373,7 @@ def opvragenklant():
         data = c.fetchone()  # opgehaalde gevens in een lijst zetten
         list = str(data[0]) + '-' + str(data[1]) + '-' + str(data[2]) + '-' + str(data[3]) + '-' + str(
             data[4]) + '-' + str(data[5]) + '-' + str(data[6]) + '-' + str(data[7]) + '-' + str(data[8]) + '-' + str(
-            data[9]) + '-' + str(data[10]) + '-' + str(data[11]) + '-' + str(data[12]) + '-' + str(data[13]) + '\n'
+            data[9]) + '-' + str(data[10]) + '-' + str(data[11]) + '-' + str(data[12]) + '-' + str(data[13]) + '-' +str(data[14]) + '\n'
         conn.close()
         return list  # het returne van de print statement
 
