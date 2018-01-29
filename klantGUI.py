@@ -168,7 +168,6 @@ def opvragenklant():
 #--------------------------------------OPVRAGENKLANT---------------------------------#
 #--------------------------------------ADVIESVRAGEN----------------------------------#
 def advies():
-    #IN GMAIL MOET JE TOESTEMMING GEVEN OM MINDER VEILIGE APPLICATIES OP JOU EMAIL TE LATEN INLOGGEN
     adviesvragenwindow = Toplevel(root)
     adviesvragenwindow.configure(background=backgroundColor, pady=50)
     screenX, screenY = 500, 200
@@ -208,6 +207,10 @@ def advies():
 
     donebutton = Button(adviesvragenwindow, text='Done', background=backgroundColor, command=lambda: emailsturen())
     donebutton.grid(row=3, column=2)
+    
+    # IN EMAIL MOET JE TOESTEMMING GEVEN OM MINDER VEILIGE APPLICATIES OP JOU EMAIL TE LATEN INLOGGEN
+    emailuitleg = Label(adviesvragenwindow, text="Om een email te sturen moet je je STMP instellingen wijzigen naar:" + '\n' + 'Minder veilige apps toestaan', background=backgroundColor)
+    emailuitleg.grid(row=5, column=1)
 
 
 
