@@ -1,6 +1,8 @@
 from tkinter import *
 from tkinter import messagebox
-import sqlite3
+import pymysql
+import pymysql.cursors
+
 
 
 # -------------------------------NIEUWEKLANT-------------------------------------#
@@ -90,9 +92,15 @@ def NieuweKlant():
     PasjeUID.grid(row=13, column=0)
     PasjeUIDentry = Entry(Nieuweklantwindow, bd=3)
     PasjeUIDentry.grid(row=13, column=1)
+
     # -----------------Saven van gegevens---------------#
     def toevoegenklant():
-        conn = sqlite3.connect('company.db')
+        conn = pymysql.connect(host='188.166.116.67',
+                               user='groep5',
+                               password='HWu4RTsD8&@UUN',
+                               db='company',
+                               charset='utf8mb4',
+                               cursorclass=pymysql.cursors.DictCursor)
         c = conn.cursor()
         Geboortedatum = str(GeboorteJaarentry.get()) + "-" + str(GeboorteMaandentry.get()) + "-" + str(
             GeboorteDagentry.get())
@@ -110,7 +118,7 @@ def NieuweKlant():
         Iban = IBANentry.get()
         abonnement = Abonnement.get()
         pasje = PasjeUIDentry.get()
-        c.execute("INSERT INTO klantgegevens VALUES (NULL , ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        c.execute("INSERT INTO klantgegevens VALUES (NULL , %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                   (pasje, geslacht, voornaam, tussenvoegsel, achternaam, Geboortedatum, postcode, huisnummer, toevoeging,
                    straatnaam, woonplaats, email, telefoonnummer, Iban, abonnement))
         Nieuweklantwindow.destroy()
@@ -144,11 +152,16 @@ def Wijzigenklant():
     Voornaamentry.grid(row=1, column=1)
 
     def wijzigenvoornaam():
-        conn = sqlite3.connect('company.db')
+        conn = pymysql.connect(host='188.166.116.67',
+                               user='groep5',
+                               password='HWu4RTsD8&@UUN',
+                               db='groep5_benno',
+                               charset='utf8mb4',
+                               cursorclass=pymysql.cursors.DictCursor)
         c = conn.cursor()
         voornaam = Voornaamentry.get()
         klantID = KlantIDentry.get()
-        c.execute("UPDATE klantgegevens SET voornaam=?  WHERE klantID=?", (voornaam, klantID))
+        c.execute("UPDATE klantgegevens SET voornaam=%s  WHERE klantID=%s", (voornaam, klantID))
         conn.commit()
         conn.close()
 
@@ -161,11 +174,16 @@ def Wijzigenklant():
     Achternaamentry.grid(row=2, column=1)
 
     def wijzigenachternaam():
-        conn = sqlite3.connect('company.db')
+        conn = pymysql.connect(host='188.166.116.67',
+                               user='groep5',
+                               password='HWu4RTsD8&@UUN',
+                               db='groep5_benno',
+                               charset='utf8mb4',
+                               cursorclass=pymysql.cursors.DictCursor)
         c = conn.cursor()
         achternaam = Achternaamentry.get()
         klantID = KlantIDentry.get()
-        c.execute("UPDATE klantgegevens SET achternaam=?  WHERE klantID=?", (achternaam, klantID))
+        c.execute("UPDATE klantgegevens SET achternaam=%s  WHERE klantID=%s", (achternaam, klantID))
         conn.commit()
         conn.close()
 
@@ -178,11 +196,16 @@ def Wijzigenklant():
     Tussenvoegselentry.grid(row=2, column=4)
 
     def wijzigentussenvoegsel():
-        conn = sqlite3.connect('company.db')
+        conn = pymysql.connect(host='188.166.116.67',
+                               user='groep5',
+                               password='HWu4RTsD8&@UUN',
+                               db='groep5_benno',
+                               charset='utf8mb4',
+                               cursorclass=pymysql.cursors.DictCursor)
         c = conn.cursor()
         tussenvoegsel = Tussenvoegselentry.get()
         klantID = KlantIDentry.get()
-        c.execute("UPDATE klantgegevens SET tussenvoegsel=?  WHERE klantID=?", (tussenvoegsel, klantID))
+        c.execute("UPDATE klantgegevens SET tussenvoegsel=%s  WHERE klantID=%s", (tussenvoegsel, klantID))
         conn.commit()
         conn.close()
 
@@ -195,11 +218,16 @@ def Wijzigenklant():
     Woonplaatsentry.grid(row=6, column=1)
 
     def wijzigenwoonplaats():
-        conn = sqlite3.connect('company.db')
+        conn = pymysql.connect(host='188.166.116.67',
+                               user='groep5',
+                               password='HWu4RTsD8&@UUN',
+                               db='groep5_benno',
+                               charset='utf8mb4',
+                               cursorclass=pymysql.cursors.DictCursor)
         c = conn.cursor()
         woonplaats = Woonplaatsentry.get()
         klantID = KlantIDentry.get()
-        c.execute("UPDATE klantgegevens SET woonplaats=?  WHERE klantID=?", (woonplaats, klantID))
+        c.execute("UPDATE klantgegevens SET woonplaats=%s  WHERE klantID=%s", (woonplaats, klantID))
         conn.commit()
         conn.close()
 
@@ -212,11 +240,16 @@ def Wijzigenklant():
     Postcodeentry.grid(row=6, column=4)
 
     def wijzigenpostcode():
-        conn = sqlite3.connect('company.db')
+        conn = pymysql.connect(host='188.166.116.67',
+                               user='groep5',
+                               password='HWu4RTsD8&@UUN',
+                               db='groep5_benno',
+                               charset='utf8mb4',
+                               cursorclass=pymysql.cursors.DictCursor)
         c = conn.cursor()
         postcode = Postcodeentry.get()
         klantID = KlantIDentry.get()
-        c.execute("UPDATE klantgegevens SET postcode=?  WHERE klantID=?", (postcode, klantID))
+        c.execute("UPDATE klantgegevens SET postcode=%s  WHERE klantID=%s", (postcode, klantID))
         conn.commit()
         conn.close()
 
@@ -229,11 +262,16 @@ def Wijzigenklant():
     Straatnaamentry.grid(row=7, column=1)
 
     def wijzigenstraatnaam():
-        conn = sqlite3.connect('company.db')
+        conn = pymysql.connect(host='188.166.116.67',
+                               user='groep5',
+                               password='HWu4RTsD8&@UUN',
+                               db='groep5_benno',
+                               charset='utf8mb4',
+                               cursorclass=pymysql.cursors.DictCursor)
         c = conn.cursor()
         straatnaam = Straatnaamentry.get()
         klantID = KlantIDentry.get()
-        c.execute("UPDATE klantgegevens SET straatnaam=?  WHERE klantID=?", (straatnaam, klantID))
+        c.execute("UPDATE klantgegevens SET straatnaam=%s  WHERE klantID=%s", (straatnaam, klantID))
         conn.commit()
         conn.close()
 
@@ -246,11 +284,16 @@ def Wijzigenklant():
     Huisnummerentry.grid(row=8, column=1)
 
     def wijzigenhuisnummer():
-        conn = sqlite3.connect('company.db')
+        conn = pymysql.connect(host='188.166.116.67',
+                               user='groep5',
+                               password='HWu4RTsD8&@UUN',
+                               db='groep5_benno',
+                               charset='utf8mb4',
+                               cursorclass=pymysql.cursors.DictCursor)
         c = conn.cursor()
         huisnummer = Huisnummerentry.get()
         klantID = KlantIDentry.get()
-        c.execute("UPDATE klantgegevens SET huisnummer=?  WHERE klantID=?", (huisnummer, klantID))
+        c.execute("UPDATE klantgegevens SET huisnummer=%s  WHERE klantID=%s", (huisnummer, klantID))
         conn.commit()
         conn.close()
 
@@ -263,11 +306,16 @@ def Wijzigenklant():
     Huisnummertoevoegingentry.grid(row=8, column=4)
 
     def wijzigenhuisnummertoevoeging():
-        conn = sqlite3.connect('company.db')
+        conn = pymysql.connect(host='188.166.116.67',
+                               user='groep5',
+                               password='HWu4RTsD8&@UUN',
+                               db='groep5_benno',
+                               charset='utf8mb4',
+                               cursorclass=pymysql.cursors.DictCursor)
         c = conn.cursor()
         toevoeging = Huisnummertoevoegingentry.get()
         klantID = KlantIDentry.get()
-        c.execute("UPDATE klantgegevens SET toevoeging=?  WHERE klantID=?", (toevoeging, klantID))
+        c.execute("UPDATE klantgegevens SET toevoeging=%s  WHERE klantID=%s", (toevoeging, klantID))
         conn.commit()
         conn.close()
 
@@ -280,11 +328,16 @@ def Wijzigenklant():
     IBANentry.grid(row=9, column=1)
 
     def wijzigeniban():
-        conn = sqlite3.connect('company.db')
+        conn = pymysql.connect(host='188.166.116.67',
+                               user='groep5',
+                               password='HWu4RTsD8&@UUN',
+                               db='groep5_benno',
+                               charset='utf8mb4',
+                               cursorclass=pymysql.cursors.DictCursor)
         c = conn.cursor()
         iban = IBANentry.get()
         klantID = KlantIDentry.get()
-        c.execute("UPDATE klantgegevens SET IBAN=?  WHERE klantID=?", (iban, klantID))
+        c.execute("UPDATE klantgegevens SET IBAN=%s  WHERE klantID=%s", (iban, klantID))
         conn.commit()
         conn.close()
 
@@ -297,11 +350,16 @@ def Wijzigenklant():
     Emailentry.grid(row=10, column=1)
 
     def wijzigenemail():
-        conn = sqlite3.connect('company.db')
+        conn = pymysql.connect(host='188.166.116.67',
+                               user='groep5',
+                               password='HWu4RTsD8&@UUN',
+                               db='groep5_benno',
+                               charset='utf8mb4',
+                               cursorclass=pymysql.cursors.DictCursor)
         c = conn.cursor()
         email = Emailentry.get()
         klantID = KlantIDentry.get()
-        c.execute("UPDATE klantgegevens SET email=?  WHERE klantID=?", (email, klantID))
+        c.execute("UPDATE klantgegevens SET email=%s  WHERE klantID=%s", (email, klantID))
         conn.commit()
         conn.close()
 
@@ -314,11 +372,16 @@ def Wijzigenklant():
     Telefoonnummerentry.grid(row=11, column=1)
 
     def wijzigentelefoonnummer():
-        conn = sqlite3.connect('company.db')
+        conn = pymysql.connect(host='188.166.116.67',
+                               user='groep5',
+                               password='HWu4RTsD8&@UUN',
+                               db='groep5_benno',
+                               charset='utf8mb4',
+                               cursorclass=pymysql.cursors.DictCursor)
         c = conn.cursor()
         telefoonnummer = Telefoonnummerentry.get()
         klantID = KlantIDentry.get()
-        c.execute("UPDATE klantgegevens SET telefoonnummer=?  WHERE klantID=?", (telefoonnummer, klantID))
+        c.execute("UPDATE klantgegevens SET telefoonnummer=%s  WHERE klantID=%s", (telefoonnummer, klantID))
         conn.commit()
         conn.close()
 
@@ -331,11 +394,16 @@ def Wijzigenklant():
     PasjeUIDentry.grid(row=12, column=1)
 
     def wijzigenpasjeUID():
-        conn = sqlite3.connect('company.db')
+        conn = pymysql.connect(host='188.166.116.67',
+                               user='groep5',
+                               password='HWu4RTsD8&@UUN',
+                               db='groep5_benno',
+                               charset='utf8mb4',
+                               cursorclass=pymysql.cursors.DictCursor)
         c = conn.cursor()
         pasje = PasjeUIDentry.get()
         klantID = KlantIDentry.get()
-        c.execute("UPDATE klantgegevens SET UID=?  WHERE klantID=?", (pasje, klantID))
+        c.execute("UPDATE klantgegevens SET UID=%s  WHERE klantID=%s", (pasje, klantID))
         conn.commit()
         conn.close()
 
@@ -354,11 +422,16 @@ def Wijzigenklant():
     Verlopen.grid(row=13, column=3)
 
     def wijzigenabonnement():
-        conn = sqlite3.connect('company.db')
+        conn = pymysql.connect(host='188.166.116.67',
+                               user='groep5',
+                               password='HWu4RTsD8&@UUN',
+                               db='groep5_benno',
+                               charset='utf8mb4',
+                               cursorclass=pymysql.cursors.DictCursor)
         c = conn.cursor()
         abonnement = Abonnement.get()
         klantID = KlantIDentry.get()
-        c.execute("UPDATE klantgegevens SET abonnement=?  WHERE klantID=?", (abonnement, klantID))
+        c.execute("UPDATE klantgegevens SET abonnement=%s  WHERE klantID=%s", (abonnement, klantID))
         conn.commit()
         conn.close()
 
@@ -371,8 +444,6 @@ def Wijzigenklant():
 
 # -------------------------------OPVRAGENKLANT-----------------------------#
 def opvragenklant():
-    conn = sqlite3.connect('company.db')
-    c = conn.cursor()
     Opvragenklantwindow = Toplevel(root)
     Opvragenklantwindow.configure(background=backgroundColor, pady=50)
     screenX, screenY = 700, 400
@@ -388,26 +459,19 @@ def opvragenklant():
     bekijkklant.grid(row=0, column=4)
     donebutton = Button(Opvragenklantwindow, text='Done', command=lambda: sluitopvragenklant(), background=backgroundColor)
     donebutton.grid(row=0, column=0)
-    list = ""
-    for row in c.execute(
-            "SELECT * FROM klantgegevens"):
-        list += str(row[0]) + '-' + str(row[1]) + '-' + str(row[2]) + '-' + str(row[3]) + '-' + str(row[4]) + '-' + str(
-            row[5]) + '-' + str(row[6]) + '-' + str(row[7]) + '-' + str(row[8]) + '-' + str(row[9]) + '-' + str(
-            row[10]) + '-' + str(row[11]) + '-' + str(row[12]) + '-' + str(row[13]) + '-' + str(row[14]) + '-' + str(row[15]) + '\n'
-    klantinformatie.configure(text=list)
-    conn.close()
-
     def klantgegevens():
-        conn = sqlite3.connect('company.db')
+        conn = pymysql.connect(host='188.166.116.67',
+                               user='groep5',
+                               password='HWu4RTsD8&@UUN',
+                               db='groep5_benno',
+                               charset='utf8mb4',
+                               cursorclass=pymysql.cursors.DictCursor)
         c = conn.cursor()
         klantID = KlantIDentry.get()
-        c.execute("SELECT * FROM klantgegevens WHERE klantID=?", klantID)  # gevens ophalen uit de DB
+        c.execute("SELECT * FROM klantgegevens WHERE klantID=%s", klantID)  # gevens ophalen uit de DB
         data = c.fetchone()  # opgehaalde gevens in een lijst zetten
-        list = str(data[0]) + '-' + str(data[1]) + '-' + str(data[2]) + '-' + str(data[3]) + '-' + str(
-            data[4]) + '-' + str(data[5]) + '-' + str(data[6]) + '-' + str(data[7]) + '-' + str(data[8]) + '-' + str(
-            data[9]) + '-' + str(data[10]) + '-' + str(data[11]) + '-' + str(data[12]) + '-' + str(data[13]) + '-' +str(data[14]) + '-' + str(data[15]) + '\n'
         conn.close()
-        return list  # het returne van de print statement
+        return data  # het returne van de print statement
 
     def sluitopvragenklant():
         Opvragenklantwindow.destroy()
@@ -422,7 +486,12 @@ def verwijderenklant():
     verwijderenklantwindow.configure(background=backgroundColor)
     screenX, screenY = 700, 200
     verwijderenklantwindow.geometry('%ix%i' % (screenX, screenY))
-    conn = sqlite3.connect('company.db')
+    conn = pymysql.connect(host='188.166.116.67',
+                           user='groep5',
+                           password='HWu4RTsD8&@UUN',
+                           db='groep5_benno',
+                           charset='utf8mb4',
+                           cursorclass=pymysql.cursors.DictCursor)
     c = conn.cursor()
     KlantID = Label(verwijderenklantwindow, text="KlantID", background=backgroundColor)
     KlantID.grid(row=0, column=2)
@@ -439,22 +508,29 @@ def verwijderenklant():
     verwijderenbutton.grid(row=1, column=2)
 
     def klantgegevens():
-        conn = sqlite3.connect('company.db')
+        conn = pymysql.connect(host='188.166.116.67',
+                               user='groep5',
+                               password='HWu4RTsD8&@UUN',
+                               db='groep5_benno',
+                               charset='utf8mb4',
+                               cursorclass=pymysql.cursors.DictCursor)
         c = conn.cursor()
         klantID = KlantIDentry.get()
-        c.execute("SELECT * FROM klantgegevens WHERE klantID=?", klantID)  # gevens ophalen uit de DB
+        c.execute("SELECT * FROM klantgegevens WHERE klantID LIKE %s", klantID)  # gevens ophalen uit de DB
         data = c.fetchone()  # opgehaalde gevens in een lijst zetten
-        list = str(data[0]) + '-' + str(data[1]) + '-' + str(data[2]) + '-' + str(data[3]) + '-' + str(
-            data[4]) + '-' + str(data[5]) + '-' + str(data[6]) + '-' + str(data[7]) + '-' + str(data[8]) + '-' + str(
-            data[9]) + '-' + str(data[10]) + '-' + str(data[11]) + '-' + str(data[12]) + '-' + str(data[13]) + '-' + str(data[14]) + '-' + str(data[15]) + '\n'
         conn.close()
-        return list  # het returne van de print statement
+        return data  # het returne van de print statement
 
     def verwijderen():
-        conn = sqlite3.connect('company.db')
+        conn = pymysql.connect(host='188.166.116.67',
+                               user='groep5',
+                               password='HWu4RTsD8&@UUN',
+                               db='groep5_benno',
+                               charset='utf8mb4',
+                               cursorclass=pymysql.cursors.DictCursor)
         c = conn.cursor()
         klantID = KlantIDentry.get()
-        c.execute("DELETE FROM klantgegevens WHERE klantID=?", klantID)
+        c.execute("DELETE FROM klantgegevens WHERE klantID=%s", klantID)
         conn.commit()
         conn.close()
 
@@ -479,4 +555,3 @@ VerwijderenklantwindowButton.pack(pady =10)
 root.configure(background=backgroundColor)
 
 root.mainloop()
-
