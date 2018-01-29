@@ -433,7 +433,8 @@ def Wijzigenklant():
                                password='HWu4RTsD8&@UUN',
                                db='groep5_benno',
                                charset='utf8mb4',
-                               cursorclass=pymysql.cursors.DictCursor)c = conn.cursor()
+                               cursorclass=pymysql.cursors.DictCursor)
+        c = conn.cursor()
         telefoonnummer = Telefoonnummerentry.get()
         klantID = KlantIDentry.get()
         c.execute("UPDATE klantgegevens SET telefoonnummer=%s  WHERE klantID=%s", (telefoonnummer, klantID))
