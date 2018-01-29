@@ -168,6 +168,7 @@ def opvragenklant():
 #--------------------------------------OPVRAGENKLANT---------------------------------#
 #--------------------------------------ADVIESVRAGEN----------------------------------#
 def advies():
+    #IN GMAIL MOET JE TOESTEMMING GEVEN OM MINDER VEILIGE APPLICATIES OP JOU EMAIL TE LATEN INLOGGEN
     adviesvragenwindow = Toplevel(root)
     adviesvragenwindow.configure(background=backgroundColor, pady=50)
     screenX, screenY = 500, 200
