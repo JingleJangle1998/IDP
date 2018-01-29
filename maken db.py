@@ -1,10 +1,17 @@
 import sqlite3
-conn = sqlite3.connect("company.db")
-c = conn.cursor()
+import pymysql
+import pymysql.cursors
+connection = pymysql.connect(host='localhost',
+                             user='root',
+                             password='schaap14',
+                             db='company',
+                             charset='utf8mb4',
+                             cursorclass=pymysql.cursors.DictCursor)
+c = connection.cursor()
 
 c.execute("""
 CREATE TABLE klantgegevens( 
-klantID INTEGER PRIMARY KEY,
+klantID INTEGER auto_increment PRIMARY KEY,
 UID INTEGER,
 geslacht VARCHAR(255),
 voornaam VARCHAR(255),
@@ -23,14 +30,13 @@ abonnement VARCHAR (255));""")
 
 c.execute("""
 CREATE TABLE  apparaten ( 
-apparaatID INTEGER PRIMARY KEY,
+apparaatID INTEGER auto_increment PRIMARY KEY,
 naam VARCHAR(255),
-beschrijving VARCHAR(255),
 kcalperminuut REAL);""")
 
 c.execute("""
 CREATE TABLE  activiteit ( 
-activeitenID INTEGER PRIMARY KEY,
+activeitenID INTEGER auto_increment PRIMARY KEY,
 klantID INTEGER,
 apparaatID INTEGER,
 tijd INTEGER,
@@ -40,5 +46,5 @@ verbranddeKcal REAL,
 FOREIGN KEY(klantID) REFERENCES klantgegevens(klantID),
 FOREIGN KEY(apparaatID) REFERENCES apparaten(apparaatID));""")
 
-conn.commit()
-conn.close()
+connection.commit()
+connection.close()
