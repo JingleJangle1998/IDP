@@ -1,13 +1,13 @@
 import sqlite3
 import pymysql
 import pymysql.cursors
-connection = pymysql.connect(host='localhost',
-                             user='root',
-                             password='schaap14',
-                             db='company',
-                             charset='utf8mb4',
-                             cursorclass=pymysql.cursors.DictCursor)
-c = connection.cursor()
+conn = pymysql.connect(host='188.166.116.67',
+                               user='groep5',
+                               password='HWu4RTsD8&@UUN',
+                               db='groep5_benno',
+                               charset='utf8mb4',
+                               cursorclass=pymysql.cursors.DictCursor)
+c = conn.cursor()
 
 c.execute("""
 CREATE TABLE klantgegevens( 
@@ -46,5 +46,5 @@ verbranddeKcal REAL,
 FOREIGN KEY(klantID) REFERENCES klantgegevens(klantID),
 FOREIGN KEY(apparaatID) REFERENCES apparaten(apparaatID));""")
 
-connection.commit()
-connection.close()
+conn.commit()
+conn.close()
