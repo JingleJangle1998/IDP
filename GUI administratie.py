@@ -98,7 +98,7 @@ def NieuweKlant():
         conn = pymysql.connect(host='188.166.116.67',
                                user='groep5',
                                password='HWu4RTsD8&@UUN',
-                               db='company',
+                               db='groep5_benno',
                                charset='utf8mb4',
                                cursorclass=pymysql.cursors.DictCursor)
         c = conn.cursor()
