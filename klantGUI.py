@@ -155,12 +155,9 @@ def opvragenklant():
         c = conn.cursor()
         klantID = KlantIDentry.get()
         c.execute("SELECT * FROM klantgegevens WHERE klantID=%s", klantID)  # gevens ophalen uit de DB
-        data = c.fetchone()  # opgehaalde gevens in een lijst zetten
-        list = str(data[0]) + '-' + str(data[1]) + '-' + str(data[2]) + '-' + str(data[3]) + '-' + str(
-            data[4]) + '-' + str(data[5]) + '-' + str(data[6]) + '-' + str(data[7]) + '-' + str(data[8]) + '-' + str(
-            data[9]) + '-' + str(data[10]) + '-' + str(data[11]) + '-' + str(data[12]) + '-' + str(data[13]) + '-' +str(data[14]) + '-' +str(data[15]) + '\n'
+        data = c.fetchall()  # opgehaalde gevens in een lijst zetten
         conn.close()
-        return list  # het returne van de print statement
+        return data  # het returne van de print statement
 
     def sluitopvragenklant():
         Opvragenklantwindow.destroy()
