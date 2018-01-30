@@ -494,18 +494,18 @@ def verwijderenklant():
                            cursorclass=pymysql.cursors.DictCursor)
     c = conn.cursor()
     KlantID = Label(verwijderenklantwindow, text="KlantID", background=backgroundColor)
-    KlantID.grid(row=0, column=2)
+    KlantID.grid(row=1, column=0)
     KlantIDentry = Entry(verwijderenklantwindow, bd=3)
-    KlantIDentry.grid(row=0, column=3)
+    KlantIDentry.grid(row=1, column=1)
     klantinformatie = Label(verwijderenklantwindow, text='')
-    klantinformatie.grid(row=1, column=1)
+    klantinformatie.grid(row=3, column=1)
     bekijkklant = Button(verwijderenklantwindow, text="Filter", background=backgroundColor,
                          command=lambda: klantinformatie.configure(text=(klantgegevens())))
-    bekijkklant.grid(row=0, column=4)
+    bekijkklant.grid(row=2, column=0)
     donebutton = Button(verwijderenklantwindow, text='Done', command=lambda: sluitverwijderenklant(), background=backgroundColor)
     donebutton.grid(row=0, column=0)
     verwijderenbutton = Button(verwijderenklantwindow, text='verwijderen', command=lambda: verwijderen(), background=backgroundColor)
-    verwijderenbutton.grid(row=1, column=2)
+    verwijderenbutton.grid(row=2, column=1)
 
     def klantgegevens():
         conn = pymysql.connect(host='188.166.116.67',
