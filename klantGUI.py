@@ -425,7 +425,38 @@ def Wijzigenklant():
 # ------------------------------WIJZIGENKLANT------------------------------#
 
 
+#-----------------------------------------AANWEZIGHEIDKLANTEN--------------------------------------
+def aanwezigheidklanten():
+    Aanwzigheidklantenwindow = Toplevel(root)
+    Aanwzigheidklantenwindow.configure(background=backgroundColor, pady=50)
+    screenX, screenY = 700, 400
+    Aanwzigheidklantenwindow.geometry('%ix%i' % (screenX, screenY))
+    klantinformatie = Label(Aanwzigheidklantenwindow, text='', background=backgroundColor)
+    klantinformatie.grid(row=2, column=1)
+    bekijkklant = Button(Aanwzigheidklantenwindow, text="Aantal mensen aanwezig",
+                         command=lambda: klantinformatie.configure(text=(aanwezigheid())), background=backgroundColor)
+    bekijkklant.grid(row=0, column=0)
+    def aanwezigheid():
+        conn = pymysql.connect(host='188.166.116.67',
+                               user='groep5',
+                               password='HWu4RTsD8&@UUN',
+                               db='groep5_benno',
+                               charset='utf8mb4',
+                               cursorclass=pymysql.cursors.DictCursor)
+        c = conn.cursor()
+        c.execute("SELECT uitlogtijd FROM aanwezigheid")  # gevens ophalen uit de DB
+        data = c.fetchall()  # opgehaalde gevens in een lijst zetten
+        aanwezigheidslijst = []
+        for iets in data:
+            if iets == None:
+                aanwezigheidslijst.append(iets)
+        aanwezigeidmensen = len(aanwezigheidslijst)
 
+        conn.close()
+        return aanwezigeidmensen  # het returne van de print statement
+
+
+#-----------------------------------------AANWEZIGHEIDKLANTEN--------------------------------------#
 
 
 
@@ -443,5 +474,7 @@ OpvragenactiviteitwindowButton = Button(root, text="Advies aanvragen", command=a
 OpvragenactiviteitwindowButton.pack(pady =10)
 WijzigenklantwindowButton = Button(root, text="Wijzigen NAW gegevens", command=Wijzigenklant, width =80, height =10, background='cyan2', font=('', 10, ''))
 WijzigenklantwindowButton.pack(pady =10)
+Aanwezigheidklantenwindowbutton = Button(root, text='Hoeveel klanten zijn er aanwezig', command=aanwezigheidklanten, width =80, height =5, background='cyan2', font=('', 10, ''))
+Aanwezigheidklantenwindowbutton.pack(pady =10)
 root.configure(background=backgroundColor)
 root.mainloop()
