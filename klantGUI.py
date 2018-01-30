@@ -436,6 +436,9 @@ def aanwezigheidklanten():
     bekijkklant = Button(Aanwzigheidklantenwindow, text="Aantal mensen aanwezig",
                          command=lambda: klantinformatie.configure(text=(aanwezigheid())), background=backgroundColor)
     bekijkklant.grid(row=0, column=0)
+    donebutton = Button(Aanwzigheidklantenwindow, text='Done', command=lambda: sluitaanwezigheidwindow(),
+                        background=backgroundColor)
+    donebutton.grid(row=2, column=2)
     def aanwezigheid():
         conn = pymysql.connect(host='188.166.116.67',
                                user='groep5',
@@ -454,6 +457,8 @@ def aanwezigheidklanten():
 
         conn.close()
         return aanwezigeidmensen  # het returne van de print statement
+    def sluitaanwezigheidwindow():
+        Aanwzigheidklantenwindow.destroy()
 
 
 #-----------------------------------------AANWEZIGHEIDKLANTEN--------------------------------------#
