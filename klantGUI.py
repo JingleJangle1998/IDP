@@ -42,14 +42,10 @@ def sportactiviteiten():
                                cursorclass=pymysql.cursors.DictCursor)
         c = conn.cursor()
         klantID = KlantIDentry.get()
-        c.execute("SELECT * FROM klantgegevens WHERE klantID=%s", klantID)  # gevens ophalen uit de DB
+        c.execute("SELECT * FROM activiteit WHERE klantID=%s", klantID)  # gevens ophalen uit de DB
         data = c.fetchone()  # opgehaalde gevens in een lijst zetten
-        list = str(data[0]) + '-' + str(data[1]) + '-' + str(data[2]) + '-' + str(data[3]) + '-' + str(
-            data[4]) + '-' + str(data[5]) + '-' + str(data[6]) + '-' + str(data[7]) + '-' + str(data[8]) + '-' + str(
-            data[9]) + '-' + str(data[10]) + '-' + str(data[11]) + '-' + str(data[12]) + '-' + str(
-            data[13]) + '-' + str(data[14]) + '\n'
         conn.close()
-        return list
+        return data
 
     def fietsen():
         conn = pymysql.connect(host='188.166.116.67',
@@ -60,14 +56,10 @@ def sportactiviteiten():
                                cursorclass=pymysql.cursors.DictCursor)
         c = conn.cursor()
         klantID = KlantIDentry.get()
-        c.execute("SELECT * FROM klantgegevens WHERE klantID=%s", klantID)  # gevens ophalen uit de DB
+        c.execute("SELECT * FROM activiteit WHERE klantID=%s", klantID)  # gevens ophalen uit de DB
         data = c.fetchone()  # opgehaalde gevens in een lijst zetten
-        list = str(data[0]) + '-' + str(data[1]) + '-' + str(data[2]) + '-' + str(data[3]) + '-' + str(
-            data[4]) + '-' + str(data[5]) + '-' + str(data[6]) + '-' + str(data[7]) + '-' + str(data[8]) + '-' + str(
-            data[9]) + '-' + str(data[10]) + '-' + str(data[11]) + '-' + str(data[12]) + '-' + str(
-            data[13]) + '-' + str(data[14]) + '\n'
         conn.close()
-        return list
+        return data
 
     def roeien():
         conn = pymysql.connect(host='188.166.116.67',
@@ -78,14 +70,10 @@ def sportactiviteiten():
                                cursorclass=pymysql.cursors.DictCursor)
         c = conn.cursor()
         klantID = KlantIDentry.get()
-        c.execute("SELECT * FROM klantgegevens WHERE klantID=%s", klantID)  # gevens ophalen uit de DB
+        c.execute("SELECT * FROM activiteit WHERE klantID=%s", klantID)  # gevens ophalen uit de DB
         data = c.fetchone()  # opgehaalde gevens in een lijst zetten
-        list = str(data[0]) + '-' + str(data[1]) + '-' + str(data[2]) + '-' + str(data[3]) + '-' + str(
-            data[4]) + '-' + str(data[5]) + '-' + str(data[6]) + '-' + str(data[7]) + '-' + str(data[8]) + '-' + str(
-            data[9]) + '-' + str(data[10]) + '-' + str(data[11]) + '-' + str(data[12]) + '-' + str(
-            data[13]) + '-' + str(data[14]) + '\n'
         conn.close()
-        return list
+        return data
 
     def benchpress():
         conn = pymysql.connect(host='188.166.116.67',
@@ -96,14 +84,10 @@ def sportactiviteiten():
                                cursorclass=pymysql.cursors.DictCursor)
         c = conn.cursor()
         klantID = KlantIDentry.get()
-        c.execute("SELECT * FROM klantgegevens WHERE klantID=%s", klantID)  # gevens ophalen uit de DB
+        c.execute("SELECT * FROM activiteit WHERE klantID=%s", klantID)  # gevens ophalen uit de DB
         data = c.fetchone()  # opgehaalde gevens in een lijst zetten
-        list = str(data[0]) + '-' + str(data[1]) + '-' + str(data[2]) + '-' + str(data[3]) + '-' + str(
-            data[4]) + '-' + str(data[5]) + '-' + str(data[6]) + '-' + str(data[7]) + '-' + str(data[8]) + '-' + str(
-            data[9]) + '-' + str(data[10]) + '-' + str(data[11]) + '-' + str(data[12]) + '-' + str(
-            data[13]) + '-' + str(data[14]) + '\n'
         conn.close()
-        return list
+        return data
 
     def pulldown():
         conn = pymysql.connect(host='188.166.116.67',
@@ -114,14 +98,10 @@ def sportactiviteiten():
                                cursorclass=pymysql.cursors.DictCursor)
         c = conn.cursor()
         klantID = KlantIDentry.get()
-        c.execute("SELECT * FROM klantgegevens WHERE klantID=%s", klantID)  # gevens ophalen uit de DB
+        c.execute("SELECT * FROM activiteit WHERE klantID=%s", klantID)  # gevens ophalen uit de DB
         data = c.fetchone()  # opgehaalde gevens in een lijst zetten
-        list = str(data[0]) + '-' + str(data[1]) + '-' + str(data[2]) + '-' + str(data[3]) + '-' + str(
-            data[4]) + '-' + str(data[5]) + '-' + str(data[6]) + '-' + str(data[7]) + '-' + str(data[8]) + '-' + str(
-            data[9]) + '-' + str(data[10]) + '-' + str(data[11]) + '-' + str(data[12]) + '-' + str(
-            data[13]) + '-' + str(data[14]) + '\n'
         conn.close()
-        return list
+        return data
 
 
 
@@ -155,8 +135,7 @@ def opvragenklant():
         c = conn.cursor()
         klantID = KlantIDentry.get()
         c.execute("SELECT * FROM klantgegevens WHERE klantID=%s", klantID)  # gevens ophalen uit de DB
-        data = c.fetchall()  # opgehaalde gevens in een lijst zetten
-        conn.close()
+        data = c.fetchone()  # opgehaalde gevens in een lijst zetten
         return data  # het returne van de print statement
 
     def sluitopvragenklant():
@@ -204,10 +183,6 @@ def advies():
 
     donebutton = Button(adviesvragenwindow, text='Done', background=backgroundColor, command=lambda: emailsturen())
     donebutton.grid(row=3, column=2)
-
-    # IN EMAIL MOET JE TOESTEMMING GEVEN OM MINDER VEILIGE APPLICATIES OP JOU EMAIL TE LATEN INLOGGEN
-    emailuitleg = Label(adviesvragenwindow, text="Om een email te sturen moet je je STMP instellingen wijzigen naar:" + '\n' + 'Minder veilige apps toestaan', background=backgroundColor)
-    emailuitleg.grid(row=5, column=1)
 
 
 
@@ -449,38 +424,7 @@ def Wijzigenklant():
 
 # ------------------------------WIJZIGENKLANT------------------------------#
 
-#-----------------------------------------AANWEZIGHEIDKLANTEN--------------------------------------
-def aanwezigheidklanten():
-    Aanwzigheidklantenwindow = Toplevel(root)
-    Aanwzigheidklantenwindow.configure(background=backgroundColor, pady=50)
-    screenX, screenY = 700, 400
-    Aanwzigheidklantenwindow.geometry('%ix%i' % (screenX, screenY))
-    klantinformatie = Label(Aanwzigheidklantenwindow, text='', background=backgroundColor)
-    klantinformatie.grid(row=2, column=1)
-    bekijkklant = Button(Aanwzigheidklantenwindow, text="Aantal mensen aanwezig",
-                         command=lambda: klantinformatie.configure(text=(aanwezigheid())), background=backgroundColor)
-    bekijkklant.grid(row=0, column=0)
-    def aanwezigheid():
-        conn = pymysql.connect(host='188.166.116.67',
-                               user='groep5',
-                               password='HWu4RTsD8&@UUN',
-                               db='groep5_benno',
-                               charset='utf8mb4',
-                               cursorclass=pymysql.cursors.DictCursor)
-        c = conn.cursor()
-        c.execute("SELECT uitlogtijd FROM aanwezigheid")  # gevens ophalen uit de DB
-        data = c.fetchall()  # opgehaalde gevens in een lijst zetten
-        aanwezigheidslijst = []
-        for iets in data:
-            if iets == None:
-                aanwezigheidslijst.append(iets)
-        aanwezigeidmensen = len(aanwezigheidslijst)
 
-        conn.close()
-        return aanwezigeidmensen  # het returne van de print statement
-
-
-#-----------------------------------------AANWEZIGHEIDKLANTEN--------------------------------------#
 
 
 
@@ -491,15 +435,13 @@ backgroundColor = 'LightBlue2'
 root = Tk()
 welkomLabel = Label(background=backgroundColor, foreground= 'navy', text='Welkom bij Benno Sport', font=('', 40, ''))
 welkomLabel.pack(side=TOP)
-OpvragenklantwindowButton = Button(root, text="Gegevens inzien", command=opvragenklant, width =80, height =5, background='cyan2', font=('', 10, ''))
+OpvragenklantwindowButton = Button(root, text="Gegevens inzien", command=opvragenklant, width =80, height =10, background='cyan2', font=('', 10, ''))
 OpvragenklantwindowButton.pack(pady =10)
-OpvragenactiviteitwindowButton = Button(root, text="Sportactiviteiten", command=sportactiviteiten, width =80, height =5, background='cyan2', font=('', 10, ''))
+OpvragenactiviteitwindowButton = Button(root, text="Sportactiviteiten", command=sportactiviteiten, width =80, height =10, background='cyan2', font=('', 10, ''))
 OpvragenactiviteitwindowButton.pack(pady =10)
-OpvragenactiviteitwindowButton = Button(root, text="Advies aanvragen", command=advies, width =80, height =5, background='cyan2', font=('', 10, ''))
+OpvragenactiviteitwindowButton = Button(root, text="Advies aanvragen", command=advies, width =80, height =10, background='cyan2', font=('', 10, ''))
 OpvragenactiviteitwindowButton.pack(pady =10)
-WijzigenklantwindowButton = Button(root, text="Wijzigen NAW gegevens", command=Wijzigenklant, width =80, height =5, background='cyan2', font=('', 10, ''))
+WijzigenklantwindowButton = Button(root, text="Wijzigen NAW gegevens", command=Wijzigenklant, width =80, height =10, background='cyan2', font=('', 10, ''))
 WijzigenklantwindowButton.pack(pady =10)
-Aanwezigheidklantenwindowbutton = Button(root, text='Hoeveel mensen zijn er aanwezig', command=aanwezigheidklanten, width =80, height =5, background='cyan2', font=('', 10, ''))
-Aanwezigheidklantenwindowbutton.pack(pady =10)
 root.configure(background=backgroundColor)
 root.mainloop()
