@@ -516,7 +516,7 @@ def verwijderenklant():
                                cursorclass=pymysql.cursors.DictCursor)
         c = conn.cursor()
         klantID = KlantIDentry.get()
-        c.execute("SELECT * FROM klantgegevens WHERE klantID LIKE %s", klantID)  # gevens ophalen uit de DB
+        c.execute("SELECT * FROM klantgegevens WHERE klantID LIKE %s", klantID) # gevens ophalen uit de DB
         data = c.fetchone()  # opgehaalde gevens in een lijst zetten
         conn.close()
         return data  # het returne van de print statement
@@ -530,6 +530,8 @@ def verwijderenklant():
                                cursorclass=pymysql.cursors.DictCursor)
         c = conn.cursor()
         klantID = KlantIDentry.get()
+        c.execute("DELETE FROM aanwezigheid WHERE klantID=%s", klantID)
+        c.execute("DELETE FROM activiteit WHERE klantID=%s", klantID)
         c.execute("DELETE FROM klantgegevens WHERE klantID=%s", klantID)
         conn.commit()
         conn.close()
