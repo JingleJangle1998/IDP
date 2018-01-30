@@ -449,14 +449,14 @@ def opvragenklant():
     screenX, screenY = 700, 400
     Opvragenklantwindow.geometry('%ix%i' % (screenX, screenY))
     KlantID = Label(Opvragenklantwindow, text="KlantID", background=backgroundColor)
-    KlantID.grid(row=0, column=2)
+    KlantID.grid(row=0, column=1)
     KlantIDentry = Entry(Opvragenklantwindow, bd=3)
-    KlantIDentry.grid(row=0, column=3)
+    KlantIDentry.grid(row=1, column=1)
     klantinformatie = Label(Opvragenklantwindow, text='')
     klantinformatie.grid(row=2, column=1)
     bekijkklant = Button(Opvragenklantwindow, text="Filter",
                          command=lambda: klantinformatie.configure(text=(klantgegevens())), background=backgroundColor)
-    bekijkklant.grid(row=0, column=4)
+    bekijkklant.grid(row=1, column=0)
     donebutton = Button(Opvragenklantwindow, text='Done', command=lambda: sluitopvragenklant(), background=backgroundColor)
     donebutton.grid(row=0, column=0)
     def klantgegevens():
@@ -539,54 +539,19 @@ def verwijderenklant():
 
 #-----------------------------------------VERWIJDERENKLANT--------------------------------------#
 
-#-----------------------------------------AANWEZIGHEIDKLANTEN--------------------------------------
-def aanwezigheidklanten():
-    Aanwzigheidklantenwindow = Toplevel(root)
-    Aanwzigheidklantenwindow.configure(background=backgroundColor, pady=50)
-    screenX, screenY = 700, 400
-    Aanwzigheidklantenwindow.geometry('%ix%i' % (screenX, screenY))
-    klantinformatie = Label(Aanwzigheidklantenwindow, text='', background=backgroundColor)
-    klantinformatie.grid(row=2, column=1)
-    bekijkklant = Button(Aanwzigheidklantenwindow, text="Aantal mensen aanwezig",
-                         command=lambda: klantinformatie.configure(text=(aanwezigheid())), background=backgroundColor)
-    bekijkklant.grid(row=0, column=0)
-    def aanwezigheid():
-        conn = pymysql.connect(host='188.166.116.67',
-                               user='groep5',
-                               password='HWu4RTsD8&@UUN',
-                               db='groep5_benno',
-                               charset='utf8mb4',
-                               cursorclass=pymysql.cursors.DictCursor)
-        c = conn.cursor()
-        c.execute("SELECT uitlogtijd FROM aanwezigheid")  # gevens ophalen uit de DB
-        data = c.fetchall()  # opgehaalde gevens in een lijst zetten
-        aanwezigheidslijst = []
-        for iets in data:
-            if iets == None:
-                aanwezigheidslijst.append(iets)
-        aanwezigeidmensen = len(aanwezigheidslijst)
-
-        conn.close()
-        return aanwezigeidmensen  # het returne van de print statement
-
-
-#-----------------------------------------AANWEZIGHEIDKLANTEN--------------------------------------#
-
 backgroundColor = 'LightBlue2'
 
 root = Tk()
 welkomLabel = Label(background=backgroundColor, foreground= 'navy', text='Benno sport administratie', font=('', 40, ''))
 welkomLabel.pack(side=TOP)
-NieuweKlantwindowButton = Button(root, text="Nieuwe Klant", command=NieuweKlant, width =80, height =5, background='cyan2', font=('', 10, ''))
+NieuweKlantwindowButton = Button(root, text="Nieuwe Klant", command=NieuweKlant, width =80, height =10, background='cyan2', font=('', 10, ''))
 NieuweKlantwindowButton.pack(pady =10)
-WijzigenklantwindowButton = Button(root, text="Wijzigen Klant", command=Wijzigenklant, width =80, height =5, background='cyan2', font=('', 10, ''))
+WijzigenklantwindowButton = Button(root, text="Wijzigen Klant", command=Wijzigenklant, width =80, height =10, background='cyan2', font=('', 10, ''))
 WijzigenklantwindowButton.pack(pady =10)
-OpvragenklantwindowButton = Button(root, text="opvragen klant", command=opvragenklant, width =80, height =5, background='cyan2', font=('', 10, ''))
+OpvragenklantwindowButton = Button(root, text="opvragen klant", command=opvragenklant, width =80, height =10, background='cyan2', font=('', 10, ''))
 OpvragenklantwindowButton.pack(pady =10)
-VerwijderenklantwindowButton = Button(root, text='klant verwijderen', command=verwijderenklant, width =80, height =5, background='cyan2', font=('', 10, ''))
+VerwijderenklantwindowButton = Button(root, text='klant verwijderen', command=verwijderenklant, width =80, height =10, background='cyan2', font=('', 10, ''))
 VerwijderenklantwindowButton.pack(pady =10)
-Aanwezigheidklantenwindowbutton = Button(root, text='Hoeveel klanten zijn er aanwezig', command=aanwezigheidklanten, width =80, height =5, background='cyan2', font=('', 10, ''))
-Aanwezigheidklantenwindowbutton.pack(pady =10)
 root.configure(background=backgroundColor)
 
 root.mainloop()
