@@ -4,7 +4,8 @@ import pymysql
 import pymysql.cursors
 import smtplib
 
-#------------------------------------SPORTACTIVITEITEN---------------------------#
+
+# ------------------------------------SPORTACTIVITEITEN---------------------------#
 def sportactiviteiten():
     sportactiviteitenwindow = Toplevel(root)
     sportactiviteitenwindow.configure(background=backgroundColor, pady=50)
@@ -17,16 +18,16 @@ def sportactiviteiten():
     klantinformatie = Label(sportactiviteitenwindow, text='', background=backgroundColor)
     klantinformatie.grid(row=2, column=1)
     opvragenloopband = Button(sportactiviteitenwindow, text="Hardlopen", background=backgroundColor,
-                         command=lambda: klantinformatie.configure(text=(hardlopen())))
+                              command=lambda: klantinformatie.configure(text=(hardlopen())))
     opvragenloopband.grid(row=1, column=0)
     opvragenfietsen = Button(sportactiviteitenwindow, text="Fietsen", background=backgroundColor,
-                              command=lambda: klantinformatie.configure(text=(fietsen())))
+                             command=lambda: klantinformatie.configure(text=(fietsen())))
     opvragenfietsen.grid(row=1, column=1)
     opvragenroeien = Button(sportactiviteitenwindow, text="Roeien", background=backgroundColor,
-                              command=lambda: klantinformatie.configure(text=(roeien())))
+                            command=lambda: klantinformatie.configure(text=(roeien())))
     opvragenroeien.grid(row=1, column=2)
     opvragenbenchpress = Button(sportactiviteitenwindow, text="Benchpress", background=backgroundColor,
-                              command=lambda: klantinformatie.configure(text=(benchpress())))
+                                command=lambda: klantinformatie.configure(text=(benchpress())))
     opvragenbenchpress.grid(row=1, column=3)
     opvragenpulldown = Button(sportactiviteitenwindow, text="Pulldown", background=backgroundColor,
                               command=lambda: klantinformatie.configure(text=(pulldown())))
@@ -43,7 +44,7 @@ def sportactiviteiten():
         c = conn.cursor()
         klantID = KlantIDentry.get()
         c.execute("SELECT * FROM activiteit WHERE klantID=%s", klantID)  # gevens ophalen uit de DB
-        data = c.fetchone()  # opgehaalde gevens in een lijst zetten
+        data = c.fetchall()  # opgehaalde gevens in een lijst zetten
         conn.close()
         return data
 
@@ -57,7 +58,7 @@ def sportactiviteiten():
         c = conn.cursor()
         klantID = KlantIDentry.get()
         c.execute("SELECT * FROM activiteit WHERE klantID=%s", klantID)  # gevens ophalen uit de DB
-        data = c.fetchone()  # opgehaalde gevens in een lijst zetten
+        data = c.fetchall()  # opgehaalde gevens in een lijst zetten
         conn.close()
         return data
 
@@ -71,7 +72,7 @@ def sportactiviteiten():
         c = conn.cursor()
         klantID = KlantIDentry.get()
         c.execute("SELECT * FROM activiteit WHERE klantID=%s", klantID)  # gevens ophalen uit de DB
-        data = c.fetchone()  # opgehaalde gevens in een lijst zetten
+        data = c.fetchall()  # opgehaalde gevens in een lijst zetten
         conn.close()
         return data
 
@@ -85,7 +86,7 @@ def sportactiviteiten():
         c = conn.cursor()
         klantID = KlantIDentry.get()
         c.execute("SELECT * FROM activiteit WHERE klantID=%s", klantID)  # gevens ophalen uit de DB
-        data = c.fetchone()  # opgehaalde gevens in een lijst zetten
+        data = c.fetchall()  # opgehaalde gevens in een lijst zetten
         conn.close()
         return data
 
@@ -99,13 +100,12 @@ def sportactiviteiten():
         c = conn.cursor()
         klantID = KlantIDentry.get()
         c.execute("SELECT * FROM activiteit WHERE klantID=%s", klantID)  # gevens ophalen uit de DB
-        data = c.fetchone()  # opgehaalde gevens in een lijst zetten
+        data = c.fetchall()  # opgehaalde gevens in een lijst zetten
         conn.close()
         return data
 
 
-
-#------------------------------------OPVRAGENKLANT-------------------------------#
+# ------------------------------------OPVRAGENKLANT-------------------------------#
 
 def opvragenklant():
     Opvragenklantwindow = Toplevel(root)
@@ -121,7 +121,8 @@ def opvragenklant():
     bekijkklant = Button(Opvragenklantwindow, text="Inloggen", background=backgroundColor,
                          command=lambda: klantinformatie.configure(text=(klantgegevens())))
     bekijkklant.grid(row=0, column=4)
-    donebutton = Button(Opvragenklantwindow, text='Done', background=backgroundColor, command=lambda: sluitopvragenklant())
+    donebutton = Button(Opvragenklantwindow, text='Done', background=backgroundColor,
+                        command=lambda: sluitopvragenklant())
     donebutton.grid(row=0, column=0)
     list = ""
 
@@ -141,8 +142,9 @@ def opvragenklant():
     def sluitopvragenklant():
         Opvragenklantwindow.destroy()
 
-#--------------------------------------OPVRAGENKLANT---------------------------------#
-#--------------------------------------ADVIESVRAGEN----------------------------------#
+
+# --------------------------------------OPVRAGENKLANT---------------------------------#
+# --------------------------------------ADVIESVRAGEN----------------------------------#
 def advies():
     adviesvragenwindow = Toplevel(root)
     adviesvragenwindow.configure(background=backgroundColor, pady=50)
@@ -154,12 +156,13 @@ def advies():
     emailentry.grid(row=0, column=1)
     wachtwoord = Label(adviesvragenwindow, text="Wachtwoord", background=backgroundColor)
     wachtwoord.grid(row=1, column=0)
-    wachtwoordentry = Entry(adviesvragenwindow,show="*", bd=3)
+    wachtwoordentry = Entry(adviesvragenwindow, show="*", bd=3)
     wachtwoordentry.grid(row=1, column=1)
     tekst = Label(adviesvragenwindow, text="Bericht", background=backgroundColor)
     tekst.grid(row=2, column=0)
     tekstentry = Entry(adviesvragenwindow, bd=3)
     tekstentry.grid(row=2, column=1)
+
     def emailsturen():
         TEKST = tekstentry.get()
         fromaddr = emailentry.get()
@@ -183,11 +186,12 @@ def advies():
 
     donebutton = Button(adviesvragenwindow, text='Done', background=backgroundColor, command=lambda: emailsturen())
     donebutton.grid(row=3, column=2)
-    
-        # IN EMAIL MOET JE TOESTEMMING GEVEN OM MINDER VEILIGE APPLICATIES OP JOU EMAIL TE LATEN INLOGGEN
-    emailuitleg = Label(adviesvragenwindow, text="Om een email te sturen moet je je STMP instellingen wijzigen naar:" + '\n' + 'Minder veilige apps toestaan', background=backgroundColor)
-    emailuitleg.grid(row=5, column=1)
 
+    # IN EMAIL MOET JE TOESTEMMING GEVEN OM MINDER VEILIGE APPLICATIES OP JOU EMAIL TE LATEN INLOGGEN
+    emailuitleg = Label(adviesvragenwindow,
+                        text="Om een email te sturen moet je je STMP instellingen wijzigen naar:" + '\n' + 'Minder veilige apps toestaan',
+                        background=backgroundColor)
+    emailuitleg.grid(row=5, column=1)
 
 
 # ------------------------------WIJZIGENKLANT-----------------------------#
@@ -222,7 +226,8 @@ def Wijzigenklant():
         conn.commit()
         conn.close()
 
-    Updatevoornaam = Button(Wijzigenklantwindow, text="Update", command=lambda: wijzigenvoornaam(), background=backgroundColor)
+    Updatevoornaam = Button(Wijzigenklantwindow, text="Update", command=lambda: wijzigenvoornaam(),
+                            background=backgroundColor)
     Updatevoornaam.grid(row=1, column=2)
     # ----------------ACHTERNAAM-------------------------#
     Achternaam = Label(Wijzigenklantwindow, text="Achternaam", background=backgroundColor)
@@ -244,7 +249,8 @@ def Wijzigenklant():
         conn.commit()
         conn.close()
 
-    Updateachternaam = Button(Wijzigenklantwindow, text="Update", command=lambda: wijzigenachternaam(), background=backgroundColor)
+    Updateachternaam = Button(Wijzigenklantwindow, text="Update", command=lambda: wijzigenachternaam(),
+                              background=backgroundColor)
     Updateachternaam.grid(row=2, column=2)
     # ------------------Tussenvoegsel--------------------#
     Tussenvoegsel = Label(Wijzigenklantwindow, text="Tussenvoegsel", background=backgroundColor)
@@ -266,7 +272,8 @@ def Wijzigenklant():
         conn.commit()
         conn.close()
 
-    Updatetussenvoegsel = Button(Wijzigenklantwindow, text="Update", command=lambda: wijzigentussenvoegsel(), background=backgroundColor)
+    Updatetussenvoegsel = Button(Wijzigenklantwindow, text="Update", command=lambda: wijzigentussenvoegsel(),
+                                 background=backgroundColor)
     Updatetussenvoegsel.grid(row=2, column=5)
     # ---------------Adresss----------------------------#
     Woonplaats = Label(Wijzigenklantwindow, text="Woonplaats", background=backgroundColor)
@@ -288,7 +295,8 @@ def Wijzigenklant():
         conn.commit()
         conn.close()
 
-    Updatewoonplaats = Button(Wijzigenklantwindow, text="Update", command=lambda: wijzigenwoonplaats(), background=backgroundColor)
+    Updatewoonplaats = Button(Wijzigenklantwindow, text="Update", command=lambda: wijzigenwoonplaats(),
+                              background=backgroundColor)
     Updatewoonplaats.grid(row=6, column=2)
     # ----------------------POSTCODE---------------------#
     Postcode = Label(Wijzigenklantwindow, text="Postcode", background=backgroundColor)
@@ -310,7 +318,8 @@ def Wijzigenklant():
         conn.commit()
         conn.close()
 
-    Updatepostode = Button(Wijzigenklantwindow, text="Update", command=lambda: wijzigenpostcode(), background=backgroundColor)
+    Updatepostode = Button(Wijzigenklantwindow, text="Update", command=lambda: wijzigenpostcode(),
+                           background=backgroundColor)
     Updatepostode.grid(row=6, column=5)
     # -----------------------STRAATNAAM------------------#
     Straatnaam = Label(Wijzigenklantwindow, text="Straatnaam", background=backgroundColor)
@@ -332,7 +341,8 @@ def Wijzigenklant():
         conn.commit()
         conn.close()
 
-    Updatestraatnaam = Button(Wijzigenklantwindow, text="Update", command=lambda: wijzigenstraatnaam(), background=backgroundColor)
+    Updatestraatnaam = Button(Wijzigenklantwindow, text="Update", command=lambda: wijzigenstraatnaam(),
+                              background=backgroundColor)
     Updatestraatnaam.grid(row=7, column=2)
     # ------------------------HUISNUMMER-----------------#
     Huisnummer = Label(Wijzigenklantwindow, text="Huisnummer", background=backgroundColor)
@@ -354,7 +364,8 @@ def Wijzigenklant():
         conn.commit()
         conn.close()
 
-    Updatehuisnummer = Button(Wijzigenklantwindow, text="Update", command=lambda: wijzigenhuisnummer(), background=backgroundColor)
+    Updatehuisnummer = Button(Wijzigenklantwindow, text="Update", command=lambda: wijzigenhuisnummer(),
+                              background=backgroundColor)
     Updatehuisnummer.grid(row=8, column=2)
     # ------------HUISNUMMERTOEVOEGING------------------#
     Huisnummertoevoeging = Label(Wijzigenklantwindow, text="Toevoeging", background=backgroundColor)
@@ -376,7 +387,8 @@ def Wijzigenklant():
         conn.commit()
         conn.close()
 
-    Updatetoevoeging = Button(Wijzigenklantwindow, text="Update", command=lambda: wijzigenhuisnummertoevoeging(), background=backgroundColor)
+    Updatetoevoeging = Button(Wijzigenklantwindow, text="Update", command=lambda: wijzigenhuisnummertoevoeging(),
+                              background=backgroundColor)
     Updatetoevoeging.grid(row=8, column=5)
 
     # ---------------EMAIL--------------------#
@@ -399,7 +411,8 @@ def Wijzigenklant():
         conn.commit()
         conn.close()
 
-    Updateemail = Button(Wijzigenklantwindow, text="Update", command=lambda: wijzigenemail(), background=backgroundColor)
+    Updateemail = Button(Wijzigenklantwindow, text="Update", command=lambda: wijzigenemail(),
+                         background=backgroundColor)
     Updateemail.grid(row=10, column=2)
     # ------------------TELEFOONNUMMER---------#
     Telefoonnummer = Label(Wijzigenklantwindow, text='Telefoonnummer', background=backgroundColor)
@@ -421,15 +434,15 @@ def Wijzigenklant():
         conn.commit()
         conn.close()
 
-    Updatetelefoonnummer = Button(Wijzigenklantwindow, text="Update", command=lambda: wijzigentelefoonnummer(), background=backgroundColor)
+    Updatetelefoonnummer = Button(Wijzigenklantwindow, text="Update", command=lambda: wijzigentelefoonnummer(),
+                                  background=backgroundColor)
     Updatetelefoonnummer.grid(row=11, column=2)
-
 
 
 # ------------------------------WIJZIGENKLANT------------------------------#
 
 
-#-----------------------------------------AANWEZIGHEIDKLANTEN--------------------------------------
+# -----------------------------------------AANWEZIGHEIDKLANTEN--------------------------------------
 def aanwezigheidklanten():
     Aanwzigheidklantenwindow = Toplevel(root)
     Aanwzigheidklantenwindow.configure(background=backgroundColor, pady=50)
@@ -443,6 +456,7 @@ def aanwezigheidklanten():
     donebutton = Button(Aanwzigheidklantenwindow, text='Done', command=lambda: sluitaanwezigheidwindow(),
                         background=backgroundColor)
     donebutton.grid(row=2, column=2)
+
     def aanwezigheid():
         conn = pymysql.connect(host='188.166.116.67',
                                user='groep5',
@@ -461,11 +475,12 @@ def aanwezigheidklanten():
 
         conn.close()
         return aanwezigeidmensen  # het returne van de print statement
+
     def sluitaanwezigheidwindow():
         Aanwzigheidklantenwindow.destroy()
 
 
-#-----------------------------------------AANWEZIGHEIDKLANTEN--------------------------------------#
+# -----------------------------------------AANWEZIGHEIDKLANTEN--------------------------------------#
 
 
 
@@ -473,17 +488,22 @@ def aanwezigheidklanten():
 backgroundColor = 'LightBlue2'
 
 root = Tk()
-welkomLabel = Label(background=backgroundColor, foreground= 'navy', text='Welkom bij Benno Sport', font=('', 40, ''))
+welkomLabel = Label(background=backgroundColor, foreground='navy', text='Welkom bij Benno Sport', font=('', 40, ''))
 welkomLabel.pack(side=TOP)
-OpvragenklantwindowButton = Button(root, text="Gegevens inzien", command=opvragenklant, width =80, height =5, background='cyan2', font=('', 10, ''))
-OpvragenklantwindowButton.pack(pady =10)
-OpvragenactiviteitwindowButton = Button(root, text="Sportactiviteiten", command=sportactiviteiten, width =80, height =5, background='cyan2', font=('', 10, ''))
-OpvragenactiviteitwindowButton.pack(pady =10)
-OpvragenactiviteitwindowButton = Button(root, text="Advies aanvragen", command=advies, width =80, height =5, background='cyan2', font=('', 10, ''))
-OpvragenactiviteitwindowButton.pack(pady =10)
-WijzigenklantwindowButton = Button(root, text="Wijzigen NAW gegevens", command=Wijzigenklant, width =80, height =5, background='cyan2', font=('', 10, ''))
-WijzigenklantwindowButton.pack(pady =10)
-Aanwezigheidklantenwindowbutton = Button(root, text='Hoeveel klanten zijn er aanwezig', command=aanwezigheidklanten, width =80, height =5, background='cyan2', font=('', 10, ''))
-Aanwezigheidklantenwindowbutton.pack(pady =10)
+OpvragenklantwindowButton = Button(root, text="Gegevens inzien", command=opvragenklant, width=80, height=5,
+                                   background='cyan2', font=('', 10, ''))
+OpvragenklantwindowButton.pack(pady=10)
+OpvragenactiviteitwindowButton = Button(root, text="Sportactiviteiten", command=sportactiviteiten, width=80, height=5,
+                                        background='cyan2', font=('', 10, ''))
+OpvragenactiviteitwindowButton.pack(pady=10)
+OpvragenactiviteitwindowButton = Button(root, text="Advies aanvragen", command=advies, width=80, height=5,
+                                        background='cyan2', font=('', 10, ''))
+OpvragenactiviteitwindowButton.pack(pady=10)
+WijzigenklantwindowButton = Button(root, text="Wijzigen NAW gegevens", command=Wijzigenklant, width=80, height=5,
+                                   background='cyan2', font=('', 10, ''))
+WijzigenklantwindowButton.pack(pady=10)
+Aanwezigheidklantenwindowbutton = Button(root, text='Hoeveel klanten zijn er aanwezig', command=aanwezigheidklanten,
+                                         width=80, height=5, background='cyan2', font=('', 10, ''))
+Aanwezigheidklantenwindowbutton.pack(pady=10)
 root.configure(background=backgroundColor)
 root.mainloop()
