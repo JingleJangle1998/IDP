@@ -43,10 +43,13 @@ def sportactiviteiten():
                                cursorclass=pymysql.cursors.DictCursor)
         c = conn.cursor()
         klantID = KlantIDentry.get()
-        c.execute("SELECT * FROM activiteit WHERE klantID=%s", klantID)  # gevens ophalen uit de DB
+        c.execute("SELECT * FROM activiteit WHERE klantID=%s AND apparaatID=%s", (klantID, 1))  # gevens ophalen uit de DB
         data = c.fetchall()  # opgehaalde gevens in een lijst zetten
         conn.close()
-        return data
+        nieuwedata = str()
+        for each in data:
+            nieuwedata += str(each) + '\n'
+        return nieuwedata
 
     def fietsen():
         conn = pymysql.connect(host='188.166.116.67',
@@ -57,10 +60,14 @@ def sportactiviteiten():
                                cursorclass=pymysql.cursors.DictCursor)
         c = conn.cursor()
         klantID = KlantIDentry.get()
-        c.execute("SELECT * FROM activiteit WHERE klantID=%s", klantID)  # gevens ophalen uit de DB
+        c.execute("SELECT * FROM activiteit WHERE klantID=%s AND apparaatID=%s", (klantID, 2))  # gevens ophalen uit de DB
         data = c.fetchall()  # opgehaalde gevens in een lijst zetten
+        nieuwedata = str()
+        for each in data:
+            nieuwedata += str(each) + '\n'
         conn.close()
-        return data
+        return nieuwedata
+
 
     def roeien():
         conn = pymysql.connect(host='188.166.116.67',
@@ -71,10 +78,13 @@ def sportactiviteiten():
                                cursorclass=pymysql.cursors.DictCursor)
         c = conn.cursor()
         klantID = KlantIDentry.get()
-        c.execute("SELECT * FROM activiteit WHERE klantID=%s", klantID)  # gevens ophalen uit de DB
+        c.execute("SELECT * FROM activiteit WHERE klantID=%s AND apparaatID=%s", (klantID, 4))  # gevens ophalen uit de DB
         data = c.fetchall()  # opgehaalde gevens in een lijst zetten
+        nieuwedata = str()
+        for each in data:
+            nieuwedata += str(each) + '\n'
         conn.close()
-        return data
+        return nieuwedata
 
     def benchpress():
         conn = pymysql.connect(host='188.166.116.67',
@@ -85,10 +95,13 @@ def sportactiviteiten():
                                cursorclass=pymysql.cursors.DictCursor)
         c = conn.cursor()
         klantID = KlantIDentry.get()
-        c.execute("SELECT * FROM activiteit WHERE klantID=%s", klantID)  # gevens ophalen uit de DB
+        c.execute("SELECT * FROM activiteit WHERE klantID=%s AND apparaatID=%s", (klantID, 3))  # gevens ophalen uit de DB
         data = c.fetchall()  # opgehaalde gevens in een lijst zetten
+        nieuwedata = str()
+        for each in data:
+            nieuwedata += str(each) + '\n'
         conn.close()
-        return data
+        return nieuwedata
 
     def pulldown():
         conn = pymysql.connect(host='188.166.116.67',
@@ -99,11 +112,13 @@ def sportactiviteiten():
                                cursorclass=pymysql.cursors.DictCursor)
         c = conn.cursor()
         klantID = KlantIDentry.get()
-        c.execute("SELECT * FROM activiteit WHERE klantID=%s", klantID)  # gevens ophalen uit de DB
+        c.execute("SELECT * FROM activiteit WHERE klantID=%s AND apparaatID=%s", (klantID, 5))  # gevens ophalen uit de DB
         data = c.fetchall()  # opgehaalde gevens in een lijst zetten
+        nieuwedata = str()
+        for each in data:
+            nieuwedata += str(each) + '\n'
         conn.close()
-        return data
-
+        return nieuwedata
 
 # ------------------------------------OPVRAGENKLANT-------------------------------#
 
