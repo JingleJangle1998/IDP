@@ -455,7 +455,7 @@ def aanwezigheidklanten():
         data = c.fetchall()  # opgehaalde gevens in een lijst zetten
         aanwezigheidslijst = []
         for iets in data:
-            if iets == None:
+            if iets['uitlogtijd'] == None:
                 aanwezigheidslijst.append(iets)
         aanwezigeidmensen = len(aanwezigheidslijst)
 
